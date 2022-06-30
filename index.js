@@ -4,8 +4,9 @@
 const express = require('express');
 // instantiate express
 const app = express();
+// In deployment, port will be set for us with process.env.PORT
+// In development, app will run on localhost: 8000
 app.set('port', process.env.PORT || 8000);
-
 //=============================================================================
 // Middleware
 //=============================================================================
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 //=============================================================================
 // Redirect
 app.get('/', (req, res) => {
-	res.redirect('/api/bookmarks');
+	res.redirect('/api/bookmarks')
 });
 /* START CONTROLLERS HERE */
 
