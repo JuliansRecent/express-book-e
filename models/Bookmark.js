@@ -1,14 +1,20 @@
-// Require the mongoose instance configured in connection.js
+// require the mongoose instance configured in connection.js
 const mongoose = require('../db/connection');
 
-// Make a new schema with 2 properties, and assign it a variable
+// make a new schema with 2 properties, and assign it to a variable
 const BookmarkSchema = new mongoose.Schema({
-    title: String,
-    url: String,
+	title: String,
+	url: String,
+	owner: {
+		// References use the type ObjectId
+		type: mongoose.Schema.Types.ObjectId,
+		// the name of the model to which they refer
+		ref: 'User',
+	},
 });
 
-// Instantiate the model, calling it "Bookmark" and with the schema we just made
-const Bookmark = mongoose.model('Bookmark', BookmarkSchema)
+// instantiate the model, calling it "Bookmark" and with the schema we just made
+const Bookmark = mongoose.model('Bookmark', BookmarkSchema);
 
-// Export the newly created model
+// export the newly created model
 module.exports = Bookmark;
